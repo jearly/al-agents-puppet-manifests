@@ -57,6 +57,13 @@ define provision-agent (
   }
 }
 
+# Start Alert Logic agent 
+define start-agent () {
+  service { "al-agent":
+    ensure => "running",
+  }
+}
+
 # Determine architecture and define package url
 if $architecture == 'amd64' {
   $pkg_url = "https://scc.alertlogic.net/software/al-agent-LATEST-1.x86_64.rpm"
@@ -79,6 +86,9 @@ $egress_url = "vaporator.alertlogic.com:443"
 # ps -efHTTP or SOCKS proxy. Defaults to undef
 $agent_proxy = undef
 
+# Alert Logic Unique Registration Key
+$registration_key = 'your_registration_key_here'
+
 # Check if $proxy_url is set and configure with SOCK or HTTP proxy if defined.
 if $agent_proxy == undef {
   $configure = "/etc/init.d/al-agent configure --host ${egress_url}"
@@ -99,6 +109,7 @@ node default {
     configure_cmd => $configure
   }
   provision-agent {'al-agent':
-    registration_key => 'your_registration_key_here'
+    registration_key => $registration_key
   }
+  start-agent {'al-agent':}
 }
