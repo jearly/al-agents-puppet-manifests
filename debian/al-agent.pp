@@ -4,6 +4,7 @@
 # Author: Justin Early <jearly@alertlogic.com>
 #
 
+# Download and install al-agent package
 define url-package (
   $url,
   $provider,
@@ -38,6 +39,7 @@ define url-package (
 
 }
 
+# Configure Alert Logic agent 
 define configure-agent (
   $configure_cmd,
 ) {
@@ -46,6 +48,7 @@ define configure-agent (
   }
 }
 
+# Provision Alert Logic agent 
 define provision-agent (
   $registration_key
 ) {
@@ -56,18 +59,27 @@ define provision-agent (
 
 # Determine architecture and define package url
 if $architecture == 'amd64' {
-  $pkg_url = "http://ns1.pd.alertlogic.net/unified/agents/package/Linux-amd64-libc6_2.7-TEST/al-agent_2.1.2+rc1.dev.TEST_amd64.deb"
+  $pkg_url = "https://scc.alertlogic.net/software/al-agent_LATEST_amd64.deb"
 }
 elsif $architecture == 'i386' {
-  $pkg_url = "http://ns1.pd.alertlogic.net/unified/agents/package/Linux-i386-libc6_2.7-TEST/al-agent_2.1.2+rc1.dev.TEST_i386.deb"
+  $pkg_url = "https://scc.alertlogic.net/software/al-agent_LATEST_i386.deb"
 }
 else {
   crit('Cannot reasonably determine the system architecture.')
 }
 
+# User defined settings
+# $egress_url: Defaults to vaportator.alertlogic.com:443
+# $agent_proxy: defaults to undefined. Can be set if you want to 
+# send traffic through SOCKS or HTTP proxy
+
+# Alert Logic primary Egress URL. 
 $egress_url = "vaporator.alertlogic.com:443"
+
+# ps -efHTTP or SOCKS proxy. Defaults to undef
 $agent_proxy = undef
 
+# Check if $proxy_url is set and configure with SOCK or HTTP proxy if defined.
 if $agent_proxy == undef {
   $configure = "/etc/init.d/al-agent configure --host ${egress_url}"
 }
@@ -75,7 +87,10 @@ else {
   $configure = "/etc/init.d/al-agent configure --host ${egress_url} --proxy ${agent_proxy}"
 }
 
-node 'node' {
+# This manifest defaults to all nodes. To specify specific hosts, 
+# change 'default' below to 'node-name(s)' separated by commas 
+# for multiple nodes.
+node default {
   url-package {'al-agent':
     url      => $pkg_url,
     provider => 'dpkg',
