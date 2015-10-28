@@ -1,4 +1,4 @@
-# Alert Logic Debian al-agent Puppet Manifest
+# Alert Logic CentOS al-agent Puppet Manifest
 # Installs and provisions Alert Logic al-agent package
 #
 # Author: Justin Early <jearly@alertlogic.com>
@@ -26,7 +26,7 @@ define url-package (
   package {'install':
     ensure   => installed,
     name     => "${package}",
-    provider => 'dpkg',
+    provider => 'rpm',
     source   => "${package_path}",
   }
 
@@ -59,10 +59,10 @@ define provision-agent (
 
 # Determine architecture and define package url
 if $architecture == 'amd64' {
-  $pkg_url = "https://scc.alertlogic.net/software/al-agent_LATEST_amd64.deb"
+  $pkg_url = "https://scc.alertlogic.net/software/al-agent-LATEST-1.x86_64.rpm"
 }
 elsif $architecture == 'i386' {
-  $pkg_url = "https://scc.alertlogic.net/software/al-agent_LATEST_i386.deb"
+  $pkg_url = "https://scc.alertlogic.net/software/al-agent-LATEST-1.i386.rpm"
 }
 else {
   crit('Cannot reasonably determine the system architecture.')
