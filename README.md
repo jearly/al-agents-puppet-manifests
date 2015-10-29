@@ -1,3 +1,6 @@
+[![Build Status](https://api.travis-ci.org/alertlogic/al-agents-puppet-manifests.svg?branch=master)](https://travis-ci.org/alertlogic/al-agents-puppet-manifests)
+
+
 Alert Logic Agent Puppet Manifests
 =================
 These Puppet Manifests are used for installing al-agent package via Puppet
