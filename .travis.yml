@@ -1,4 +1,9 @@
 rvm: 1.8.7
 env:
+  matrix:
   - PUPPET_VERSION=2.6.14
   - PUPPET_VERSION=2.7.11
+notifications:
+  hipchat:
+    rooms:
+      secure: fP0WK2JKfc/yBYx0kxQzwTBVtgdr15YHvQvbzJ8jcbVfT5tWVIZy0twBbQNqVwrM+JPonk2+PPzyCvstNbaQLWcR6SAur2/EYk8hFUwHDBEzmZk+ejKj/++mmvmLozdgWE70bq6u7cDHzby5WikQ+KCOrKKrD50ZJ/EcnCa9TiXCvumm2YTYvsPq2Wt9vJptVvE4HvCC3W6VJQz/tcXsfNf720v93kGULNFDv20Ff8S8z4oJlZyP46IIPqPyOeVO5BqML6rrk2oeT+JWKKtmWX53oBGkmtoT22zLyejhEuyx2oc8dKqCuTpJK6WLkOVRMpf+xPXzcghzzlOcBmeWsXls5lpp1oCpPePEDg/sA8fd/zkfV0Crva02csJu4QesOPb6cEvR5/aej/YWd11YgFs00W7sYwYZgkenrmjhfHdV558jgBkY3lwdR1arXTcxo1iVsrgvoGoSr3mhtSRd9QEm+JyUTgrASeXCeiGZi//vi5T/ITDrEMJpOCfpHALur7mtvynwK4TPt9n87zuKlaRWMD9Y1bKyJ8+khbZ2b9+EoR/Y+yPwWTc9kMgQ95OpfYKLvS21BFRA98gvUFIMoI56oyN1j2jYx/UJjiy/+uhOtlfrRaHAu2AMofMuQeKSZuOj6kRyWcqPBv3dtTU/PxJY83xQpNZLds1wLhui9Lk=
