@@ -52,6 +52,7 @@ Contributing
 License and Authors
 -------------------
 License:
+
 Distributed under the Apache 2.0 license.
 
 Authors: Justin Early (jearly@alertlogic.com)
