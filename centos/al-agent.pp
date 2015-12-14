@@ -107,7 +107,7 @@ else {
 node default {
   url_package {'al-agent':
     url      => $pkg_url,
-    provider => 'dpkg',
+    provider => 'rpm',
   }
   configure_agent {'al-agent':
     configure_cmd => $configure
