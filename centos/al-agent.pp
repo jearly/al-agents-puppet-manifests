@@ -91,7 +91,7 @@ $agent_proxy = undef
 # Alert Logic Unique Registration Key
 $registration_key = 'your_registration_key_here'
 
-# Check if $proxy_url is set and configure with SOCK or HTTP proxy if defined.
+# Check if $proxy_url is set and configure with SOCKS or HTTP proxy if defined.
 if $agent_proxy == undef {
   $configure = "/etc/init.d/al-agent configure --host ${egress_url}"
 }
